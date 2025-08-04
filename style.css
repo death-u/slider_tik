@@ -1,0 +1,52 @@
+body{
+    background-color: rgb(51,51,51);
+    -webkit-user-select:none;
+    user-select: none;
+}
+.banner{
+position: absolute;
+display: flex;
+left: 50%;
+top:50%;
+transform: translate(-50%,-50%) perspective(1000px);
+transform-style: preserve-3d;
+
+}
+.banner img{
+    height: 200px;
+    width: 120px;
+    object-fit: cover;
+    margin: 5px;
+}
+.banner .item{
+    filter: brightness(0);
+    transition: all .5s;
+}
+.banner .item:hover{
+    filter: brightness(1);
+    transform: translateZ(200px);
+}
+.banner .item:hover + *{
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(40deg);
+}
+.banner .item:hover + * +*{
+    filter: brightness(.4);
+    transform: translateZ(70px) rotateY(20deg);
+}
+.banner .item:hover + * +* +*{
+    filter: brightness(.2);
+    transform: translateZ(30px) rotateY(10deg);
+}
+.banner .item:has(+*:hover){
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(-40deg);
+}
+.banner .item:has(+*+*:hover){
+    filter: brightness(0.4);
+    transform: translateZ(70px) rotateY(-20deg);
+}
+.banner .item:has(+*+*+*:hover){
+    filter: brightness(0.2);
+    transform: translateZ(30px) rotateY(-10deg);
+}
